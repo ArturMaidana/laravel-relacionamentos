@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePreferencesTable extends Migration
+class CreateTweetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreatePreferencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('preferences', function (Blueprint $table) {
+        Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->boolean('notify_emails')->default(true);
-            $table->boolean('notify')->default(true);
-            $table->string('background_color');
+            $table->unsignedBigInteger('user_id');
+            $table->string('content');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                            ->references('id')
+                            ->on('users')
+                            ->onDelete('cascade');
         });
     }
 
@@ -30,6 +33,6 @@ class CreatePreferencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preferences');
+        Schema::dropIfExists('tweets');
     }
 }
