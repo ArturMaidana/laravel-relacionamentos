@@ -14,18 +14,20 @@ class ShowTweets extends Component
 
     public function render()
     {
-        $this->count = $this->count + 1;
-        return view('livewire.show-tweets');
+        // $this->count = $this->count + 1;
+
+        $tweets = Tweet::get();
+        return view('livewire.show-tweets', ['tweets' => $tweets]);
     }
 
-    public function mount(){
-        $this->text = 'Texto inicial';
+    // public function mount(){
+    //     $this->text = 'Texto inicial';
 
 
-    }
+    // }
 
-     public function save(){
+    //  public function save(){
 
 
-    }
+    // }
 }
