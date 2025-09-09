@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ShowTweets;
 use App\Models\{
     User,
 };
@@ -10,8 +11,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/one-to-one', function () {
-    $user = User::first();
-
-    dd($user->preferences()->get());
-});
+Route::get('/tweets', ShowTweets::class);
