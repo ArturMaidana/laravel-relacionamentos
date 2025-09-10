@@ -8,16 +8,33 @@ use Livewire\Component;
 class ShowTweets extends Component
 {
 
-    public $message = 'Hello, World!';
-    public $text = '';
-    public $count = 0;
+    public $content = 'Hello, World!';
+
+    protected $rules = [
+        'content' => 'required|min:3|max:255'
+    ];
+
 
     public function render()
     {
         // $this->count = $this->count + 1;
 
-        $tweets = Tweet::get();
+        $tweets = Tweet::with('user')->get();
         return view('livewire.show-tweets', ['tweets' => $tweets]);
+    }
+
+
+    public function create()
+    {
+        $this->validate();
+
+
+        Tweet::create([
+            'content' => $this->content,
+            'user_id' => 1,
+        ]);
+
+        $this->content = '';
     }
 
     // public function mount(){

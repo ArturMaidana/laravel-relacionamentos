@@ -11,4 +11,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tweets', ShowTweets::class);
+Route::any('/tweets', ShowTweets::class);
