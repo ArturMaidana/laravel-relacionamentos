@@ -22,7 +22,7 @@ class ShowTweets extends Component
     {
         // $this->count = $this->count + 1;
 
-        $tweets = Tweet::with('user')->paginate(2);
+        $tweets = Tweet::with('user')->latest()->paginate(10);
         return view('livewire.show-tweets', ['tweets' => $tweets]);
     }
 
@@ -31,23 +31,10 @@ class ShowTweets extends Component
     {
         $this->validate();
 
-
-        Tweet::create([
+        auth()->user()->tweets()->create([
             'content' => $this->content,
-            'user_id' => 1,
         ]);
 
         $this->content = '';
     }
-
-    // public function mount(){
-    //     $this->text = 'Texto inicial';
-
-
-    // }
-
-    //  public function save(){
-
-
-    // }
 }
