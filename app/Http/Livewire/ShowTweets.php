@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Like;
 use App\Models\Tweet;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -50,5 +51,15 @@ class ShowTweets extends Component
      public function unlike(Tweet $tweet)
     {
         $tweet->likes()->delete();
+    }
+
+    public function delete(Tweet $tweet)
+    {
+        // $tweet = Tweet::where('id', '=', $tweetId)->first();
+        // $tweet = Tweet::find($tweetId);
+        // $like = Like::where('tweet_id', $tweetId)->where('user_id',auth()->user()->id) ->get();
+        // dd($tweet, $like);
+        $tweet->likes()->delete();
+        $tweet->delete();
     }
 }
