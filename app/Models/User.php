@@ -60,16 +60,4 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
-    public function tweets(){
-        return $this->hasMany(Tweet::class);
-    }
-
-    public function likes(){
-        return $this->hasMany(Like::class);
-    }
-
-    public function getImageAttribute(){
-        return $this->profile_photo_path;
-    }
 }
